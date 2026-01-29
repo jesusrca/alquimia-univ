@@ -262,19 +262,36 @@ function toggleAccordion(element) {
   const day = element.parentElement;
   const isActive = day.classList.contains('is-active');
 
-  // Close other accordion items (optional, but requested for modern effect)
+  // Close other accordion items
   const allDays = document.querySelectorAll('.program-day');
   allDays.forEach(item => {
-    item.classList.remove('is-active');
-    const toggle = item.querySelector('.program-day__toggle');
-    if (toggle) toggle.textContent = 'Ver itinerario';
+    if (item !== day) {
+      item.classList.remove('is-active');
+      const toggle = item.querySelector('.program-day__toggle');
+      if (toggle) toggle.textContent = 'Ver itinerario';
+    }
   });
 
-  if (!isActive) {
+  // Toggle current item
+  if (isActive) {
+    day.classList.remove('is-active');
+    const toggleBtn = day.querySelector('.program-day__toggle');
+    if (toggleBtn) toggleBtn.textContent = 'Ver itinerario';
+  } else {
     day.classList.add('is-active');
     const toggleBtn = day.querySelector('.program-day__toggle');
     if (toggleBtn) toggleBtn.textContent = 'Ocultar itinerario';
   }
+
+  // Update Lenis/Scroll after transition
+  // We wait a bit for the animation to complete or be in progress
+  setTimeout(() => {
+    if (typeof lenis !== 'undefined') {
+      lenis.resize();
+    }
+    // Also trigger a window resize event as a fallback for other libraries
+    window.dispatchEvent(new Event('resize'));
+  }, 600);
 }
 
 // ============================================

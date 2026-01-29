@@ -570,11 +570,26 @@ html.lenis body {
 }
 
 /* Active State - Full Width Gray Background */
+.program-day::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+  transition: background-color 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  pointer-events: none;
+}
+
+.program-day.is-active::before {
+  background-color: #f5f5f5;
+  /* Un gris un poco más suave que e5e5e5 para mayor elegancia */
+}
+
 .program-day.is-active {
-  background-color: #e5e5e5;
-  /* Magic trick to make background full-width while staying in container */
-  box-shadow: 0 0 0 100vmax #e5e5e5;
-  clip-path: inset(0 -100vmax);
   z-index: 1;
 }
 
@@ -588,7 +603,8 @@ html.lenis body {
 }
 
 .program-schedule {
-  padding: 0 0 40px 150px;
+  padding: 20px 0 60px 150px;
+  /* Ajuste de padding para evitar saltos y dar aire */
 }
 
 .program-item {
