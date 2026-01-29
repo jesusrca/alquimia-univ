@@ -856,17 +856,8 @@ html.lenis body {
   margin: 0;
 }
 
-.carousel-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
-}
-
 .carousel-slide {
-  width: 33.3vw;
-  /* 3 imágenes visibles en pantalla aprox */
   height: 80vh;
-  padding-right: 20px;
   flex-shrink: 0;
 }
 
@@ -877,17 +868,7 @@ html.lenis body {
   display: block;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
 
-  100% {
-    transform: translateX(-50%);
-  }
-
-  /* Mueve la mitad porque duplicamos las imágenes */
-}
 
 /* Responsive About */
 @media (max-width: 768px) {
@@ -906,8 +887,7 @@ html.lenis body {
   }
 
   .carousel-slide {
-    width: 80vw;
-    height: 400px;
+    height: 70vh;
   }
 }
 
@@ -1094,7 +1074,8 @@ html.lenis body {
   gap: 30px;
 }
 
-.footer__logo svg {
+.footer__logo svg,
+.footer__logo-img {
   height: 30px;
   width: auto;
   filter: brightness(0) invert(1);
