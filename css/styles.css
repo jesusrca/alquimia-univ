@@ -482,6 +482,9 @@ html.lenis body {
 
 .section__title--large {
   font-size: 50px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: #8b908f;
 }
 
 /* Grid for Content */

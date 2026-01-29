@@ -3,6 +3,14 @@
  * Main JavaScript File
  */
 
+// ============================================
+// Force Scroll to Top on Reload
+// ============================================
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // ================= ===========================
 // Hero Entrance Animation
 // ============================================
