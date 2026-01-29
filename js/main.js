@@ -489,6 +489,85 @@ async function initJourneyLogoAnimation() {
 window.addEventListener('load', initJourneyLogoAnimation);
 
 // ============================================
+// Lodging Scroll Parallax Animation
+// ============================================
+function initLodgingScroll() {
+  const items = document.querySelectorAll('.lodging-item');
+
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    // Elements to animate
+    const price = item.querySelector('.lodging-item__price');
+    const imageWrapper = item.querySelector('.lodging-item__image-wrapper');
+    const image = item.querySelector('.lodging-item__image');
+    const name = item.querySelector('.lodging-item__name');
+
+    if (!imageWrapper || !image) return;
+
+    // 1. Text Elements Parallax (Move slightly slower/faster than scroll)
+    // We can use a simple y movement linked to scroll
+    const textElement = price || item.querySelector('.lodging-item__label');
+
+    if (textElement) {
+      gsap.fromTo(textElement,
+        { y: 30 },
+        {
+          y: -30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    }
+
+    if (name) {
+      gsap.fromTo(name,
+        { y: 60 }, // Starts lower, moves up faster -> appears to lag behind
+        {
+          y: -60,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    }
+
+    // 2. Image Window Parallax (The classic effect)
+    // The image is taller (140%) and moves inside the wrapper (100%)
+    // Moving from -20% (top) to 20% (bottom) creates the window effect
+    gsap.fromTo(image,
+      { yPercent: -15, scale: 1.1 }, // Start slightly up scaled
+      {
+        yPercent: 15,
+        scale: 1.1, // Keep scale
+        ease: "none",
+        scrollTrigger: {
+          trigger: imageWrapper,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+  });
+}
+
+// Ensure GSAP ScrollTrigger is registered if not already
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+  initLodgingScroll();
+}
+
+// ============================================
 // Initialize
 // ============================================
 console.log('Quibayo 2026 - Universidad de la Alquimia');
