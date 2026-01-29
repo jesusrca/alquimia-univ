@@ -447,14 +447,21 @@
                         const captionEl = document.querySelector('.slider-caption');
 
                         if (title && captionEl) {
-                            // 1. Fade out
+                            // Cancel any pending update to prevent overlapping/flashing
+                            if (this.sliderCaptionTimeout) {
+                                clearTimeout(this.sliderCaptionTimeout);
+                            }
+
+                            // 1. Fade out quickly
+                            captionEl.style.transition = 'opacity 0.3s ease-out';
                             captionEl.style.opacity = 0;
 
-                            // 2. Wait for transition (500ms) then change text & fade in
-                            setTimeout(() => {
+                            // 2. Wait, Change, Fade In
+                            this.sliderCaptionTimeout = setTimeout(() => {
                                 captionEl.textContent = title;
+                                captionEl.style.transition = 'opacity 0.6s ease-in';
                                 captionEl.style.opacity = 1;
-                            }, 500);
+                            }, 350); // Slightly longer than 0.3s to ensure invisible
                         }
                     }
                 }
