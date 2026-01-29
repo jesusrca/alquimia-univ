@@ -187,11 +187,10 @@
             <div class="swiper nature-swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="assets/Paisaje-Landing-hero.jpg" alt="Slide 1" class="full-width-image">
+                        <img src="assets/slide01.jpg" alt="Slide 1" class="full-width-image">
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Slide 2"
-                            class="full-width-image">
+                        <img src="assets/slide02.jpg" alt="Slide 2" class="full-width-image">
                     </div>
                     <div class="swiper-slide">
                         <img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Slide 3"
@@ -219,97 +218,120 @@
     <!-- Program Section -->
     <section class="section" id="programa">
         <div class="container">
-            <h2 class="section__title section__title--large">Programa</h2>
-
-            <!-- Day 1 -->
-            <div class="program-day">
-                <div class="program-day__header">
-                    <span class="program-day__date">30. 10</span>
-                    <span class="program-day__name">Jueves</span>
-                </div>
-
-                <div class="program-schedule">
-                    <div class="program-item">
-                        <span class="program-item__time">9:00 AM</span>
-                        <span class="program-item__activity">Salida desde la Universidad</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">4:00 PM</span>
-                        <span class="program-item__activity">Llegada al Cerro María Lionza</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">7:00 PM</span>
-                        <span class="program-item__activity">Cena</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">10:00 PM</span>
-                        <span class="program-item__activity">Práctica de Alqvimia</span>
-                    </div>
-                </div>
+            <div class="program-header">
+                <h2 class="section__title section__title--large">Programa</h2>
+                <p class="program-header__description">
+                    Asiste a uno de los eventos más importantes del año diseñado para tu crecimiento y transformación,
+                    conectándote profundamente con el Corazón de la Madre Tierra.
+                </p>
             </div>
 
-            <!-- Day 2 -->
-            <div class="program-day">
-                <div class="program-day__header">
-                    <span class="program-day__date">31. 10</span>
-                    <span class="program-day__name">Viernes</span>
+            <div class="program-accordion">
+                <!-- Day 1 -->
+                <div class="program-day">
+                    <div class="program-day__header" onclick="toggleAccordion(this)">
+                        <span class="program-day__date">30. 10</span>
+                        <span class="program-day__name">Jueves</span>
+                        <span class="program-day__toggle">Ver itinerario</span>
+                    </div>
+
+                    <div class="program-day__content">
+                        <div class="program-day__inner">
+                            <div class="program-schedule">
+                                <div class="program-item">
+                                    <span class="program-item__time">9:00 AM</span>
+                                    <span class="program-item__activity">Salida desde la Universidad</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">4:00 PM</span>
+                                    <span class="program-item__activity">Llegada al Cerro María Lionza</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">7:00 PM</span>
+                                    <span class="program-item__activity">Cena</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">10:00 PM</span>
+                                    <span class="program-item__activity">Práctica de Alqvimia</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="program-schedule">
-                    <div class="program-item">
-                        <span class="program-item__time">7:00 AM</span>
-                        <span class="program-item__activity">Meditación matutina</span>
+                <!-- Day 2 -->
+                <div class="program-day">
+                    <div class="program-day__header" onclick="toggleAccordion(this)">
+                        <span class="program-day__date">31. 10</span>
+                        <span class="program-day__name">Viernes</span>
+                        <span class="program-day__toggle">Ver itinerario</span>
                     </div>
-                    <div class="program-item">
-                        <span class="program-item__time">9:00 AM</span>
-                        <span class="program-item__activity">Desayuno</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">11:00 AM</span>
-                        <span class="program-item__activity">Taller de transformación</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">2:00 PM</span>
-                        <span class="program-item__activity">Almuerzo</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">4:00 PM</span>
-                        <span class="program-item__activity">Caminata consciente</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">7:00 PM</span>
-                        <span class="program-item__activity">Cena</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">9:00 PM</span>
-                        <span class="program-item__activity">Ceremonia nocturna</span>
+
+                    <div class="program-day__content">
+                        <div class="program-day__inner">
+                            <div class="program-schedule">
+                                <div class="program-item">
+                                    <span class="program-item__time">7:00 AM</span>
+                                    <span class="program-item__activity">Meditación matutina</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">9:00 AM</span>
+                                    <span class="program-item__activity">Desayuno</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">11:00 AM</span>
+                                    <span class="program-item__activity">Taller de transformación</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">2:00 PM</span>
+                                    <span class="program-item__activity">Almuerzo</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">4:00 PM</span>
+                                    <span class="program-item__activity">Caminata consciente</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">7:00 PM</span>
+                                    <span class="program-item__activity">Cena</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">9:00 PM</span>
+                                    <span class="program-item__activity">Ceremonia nocturna</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Day 3 -->
-            <div class="program-day">
-                <div class="program-day__header">
-                    <span class="program-day__date">1. 11</span>
-                    <span class="program-day__name">Sábado</span>
-                </div>
+                <!-- Day 3 -->
+                <div class="program-day">
+                    <div class="program-day__header" onclick="toggleAccordion(this)">
+                        <span class="program-day__date">1. 11</span>
+                        <span class="program-day__name">Sábado</span>
+                        <span class="program-day__toggle">Ver itinerario</span>
+                    </div>
 
-                <div class="program-schedule">
-                    <div class="program-item">
-                        <span class="program-item__time">7:00 AM</span>
-                        <span class="program-item__activity">Meditación de cierre</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">9:00 AM</span>
-                        <span class="program-item__activity">Desayuno</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">11:00 AM</span>
-                        <span class="program-item__activity">Círculo de integración</span>
-                    </div>
-                    <div class="program-item">
-                        <span class="program-item__time">2:00 PM</span>
-                        <span class="program-item__activity">Regreso a la Universidad</span>
+                    <div class="program-day__content">
+                        <div class="program-day__inner">
+                            <div class="program-schedule">
+                                <div class="program-item">
+                                    <span class="program-item__time">7:00 AM</span>
+                                    <span class="program-item__activity">Meditación de cierre</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">9:00 AM</span>
+                                    <span class="program-item__activity">Desayuno</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">11:00 AM</span>
+                                    <span class="program-item__activity">Círculo de integración</span>
+                                </div>
+                                <div class="program-item">
+                                    <span class="program-item__time">2:00 PM</span>
+                                    <span class="program-item__activity">Regreso a la Universidad</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -235,6 +235,28 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================
+// Program Accordion
+// ============================================
+function toggleAccordion(element) {
+  const day = element.parentElement;
+  const isActive = day.classList.contains('is-active');
+
+  // Close other accordion items (optional, but requested for modern effect)
+  const allDays = document.querySelectorAll('.program-day');
+  allDays.forEach(item => {
+    item.classList.remove('is-active');
+    const toggle = item.querySelector('.program-day__toggle');
+    if (toggle) toggle.textContent = 'Ver itinerario';
+  });
+
+  if (!isActive) {
+    day.classList.add('is-active');
+    const toggleBtn = day.querySelector('.program-day__toggle');
+    if (toggleBtn) toggleBtn.textContent = 'Ocultar itinerario';
+  }
+}
+
+// ============================================
 // Initialize
 // ============================================
 console.log('Quibayo 2026 - Universidad de la Alquimia');

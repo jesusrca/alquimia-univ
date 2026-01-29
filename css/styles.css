@@ -118,6 +118,7 @@ html.lenis body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: inline-block;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -416,53 +417,162 @@ html.lenis body {
   object-fit: cover;
 }
 
-/* Program List */
+/* Program Section Styles */
+.program-header {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  margin-bottom: 100px;
+  align-items: flex-start;
+}
+
+.program-header__description {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  color: #8b908f;
+  line-height: 1.4;
+  font-weight: 300;
+  max-width: 600px;
+}
+
+.program-accordion {
+  border-top: 1px solid #eee;
+}
+
 .program-day {
-  margin-bottom: 80px;
   border-bottom: 1px solid #eee;
-  padding-bottom: 60px;
+  transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  position: relative;
 }
 
 .program-day__header {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 40px;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: 150px 1fr auto;
+  padding: 40px 0;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.program-day__header:hover {
+  opacity: 0.7;
 }
 
 .program-day__date {
   font-family: var(--font-sans);
-  font-size: 32px;
-  font-weight: 500;
-}
-
-.program-day__name {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
   color: var(--color-text-secondary);
 }
 
-.program-schedule {
+.program-day__name {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+}
+
+.program-day__toggle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #c0c0c0;
+  letter-spacing: 0.05em;
+}
+
+/* Accordion Content Logic */
+.program-day__content {
   display: grid;
-  gap: 20px;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.program-day__inner {
+  overflow: hidden;
+}
+
+/* Active State - Full Width Gray Background */
+.program-day.is-active {
+  background-color: #e5e5e5;
+  /* Magic trick to make background full-width while staying in container */
+  box-shadow: 0 0 0 100vmax #e5e5e5;
+  clip-path: inset(0 -100vmax);
+  z-index: 1;
+}
+
+.program-day.is-active .program-day__content {
+  grid-template-rows: 1fr;
+}
+
+.program-day.is-active .program-day__date,
+.program-day.is-active .program-day__name {
+  color: #000;
+}
+
+.program-schedule {
+  padding: 0 0 40px 150px;
 }
 
 .program-item {
   display: grid;
   grid-template-columns: 150px 1fr;
   padding: 20px 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.program-item:first-child {
+  border-top: none;
 }
 
 .program-item__time {
   font-family: var(--font-mono);
   font-size: 13px;
+  color: #8b908f;
 }
 
 .program-item__activity {
   font-family: var(--font-sans);
   font-size: 18px;
+  font-weight: 400;
+  color: #8b908f;
+}
+
+@media (max-width: 1024px) {
+  .program-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .program-day__header {
+    grid-template-columns: 80px 1fr auto;
+    padding: 30px 0;
+  }
+
+  .program-day__date {
+    font-size: 18px;
+  }
+
+  .program-day__name {
+    font-size: 16px;
+  }
+
+  .program-schedule {
+    padding-left: 0;
+    padding-bottom: 30px;
+  }
+
+  .program-item {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 20px 0;
+  }
+
+  .program-header__description {
+    font-size: 18px;
+  }
 }
 
 /* Gallery */
@@ -785,6 +895,7 @@ html.lenis body {
     font-size: 24px;
   }
 }
+
 /* ============================================
    Nature Slider Section
    ============================================ */
@@ -795,7 +906,8 @@ html.lenis body {
 
 .nature-swiper {
   width: 100%;
-  height: 80vh; /* Ajustable según preferencia, full-screen o casi */
+  height: 80vh;
+  /* Ajustable según preferencia, full-screen o casi */
   min-height: 600px;
 }
 
@@ -815,14 +927,14 @@ html.lenis body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #eee; /* Opcional, para separar */
   padding-top: 20px;
 }
 
 .slider-caption {
   margin: 0;
   max-width: 50%;
-  font-size: 34px !important; /* Forzar el tamaño estándar 34px */
+  font-size: 34px !important;
+  /* Forzar el tamaño estándar 34px */
   color: #8b908f;
   font-weight: 300;
 }
@@ -832,7 +944,8 @@ html.lenis body {
   gap: 20px;
 }
 
-.slider-prev, .slider-next {
+.slider-prev,
+.slider-next {
   min-width: 120px;
   text-align: center;
   cursor: pointer;
@@ -840,27 +953,28 @@ html.lenis body {
 
 @media (max-width: 768px) {
   .nature-swiper {
-    height: 50vh;
+    height: 80vh;
     min-height: 400px;
   }
-  
+
   .slider-footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
   }
-  
+
   .slider-caption {
     max-width: 100%;
     font-size: 24px !important;
   }
-  
+
   .slider-navigation {
     width: 100%;
     justify-content: space-between;
   }
-  
-  .slider-prev, .slider-next {
+
+  .slider-prev,
+  .slider-next {
     flex: 1;
   }
 }
