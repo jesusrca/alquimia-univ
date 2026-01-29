@@ -40,6 +40,11 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content"></div>
+    </div>
+
     <!-- Hero Section with Header -->
     <section class="hero-section" id="inicio">
         <!-- Header / Navigation -->
@@ -188,14 +193,14 @@
             <!-- Swiper -->
             <div class="swiper nature-swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-title="Encuentro con la naturaleza">
                         <img src="assets/slide01.jpg" alt="Slide 1" class="full-width-image">
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-title="Conexión con el ser">
                         <img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Slide 2"
                             class="full-width-image">
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-title="Renacer en la montaña">
                         <img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Slide 3"
                             class="full-width-image">
                     </div>
@@ -435,6 +440,27 @@
                     enabled: true,
                 },
                 speed: 600,
+                on: {
+                    slideChange: function () {
+                        const activeSlide = this.slides[this.activeIndex];
+                        // When loop is true, Swiper adds duplicate slides. We need to handle that.
+                        // However, Swiper usually copies attributes. Let's check.
+                        // Use realIndex to find the original slide if needed, but checking the active element is safer for data attributes.
+                        // Or we can query based on data-swiper-slide-index if attributes aren't preserved on clones (they usually are).
+
+                        const title = activeSlide.getAttribute('data-title');
+                        const captionEl = document.querySelector('.slider-caption');
+
+                        if (title && captionEl) {
+                            // Simple fade effect
+                            captionEl.style.opacity = 0;
+                            setTimeout(() => {
+                                captionEl.textContent = title;
+                                captionEl.style.opacity = 1;
+                            }, 200);
+                        }
+                    }
+                }
             });
         });
     </script>

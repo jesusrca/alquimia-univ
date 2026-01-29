@@ -11,30 +11,103 @@ if (history.scrollRestoration) {
 }
 window.scrollTo(0, 0);
 
-// ================= ===========================
-// Hero Entrance Animation
 // ============================================
-window.addEventListener('load', () => {
+// Hero Entrance Animation (Triggered by Preloader)
+// ============================================
+function startHeroAnimation() {
   const heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 2 } });
 
-  heroTl.from(".hero__title", {
-    y: 30,
-    opacity: 0,
-    delay: 0.5
-  })
-    .from(".hero__location", {
-      y: 20,
-      opacity: 0
-    }, "-=1.5")
-    .from(".hero__dates", {
-      y: 20,
-      opacity: 0
-    }, "-=1.5")
-    .from(".hero__form", {
-      y: 20,
-      opacity: 0
-    }, "-=1.5");
-});
+  heroTl.fromTo(".hero__title",
+    { y: 30, opacity: 0 },
+    { y: 0, opacity: 1, delay: 0.1 }
+  )
+    .fromTo(".hero__location",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1 },
+      "-=1.5"
+    )
+    .fromTo(".hero__dates",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1 },
+      "-=1.5"
+    )
+    .fromTo(".hero__form",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1 },
+      "-=1.5"
+    );
+}
+
+// ============================================
+// Preloader Animation
+// ============================================
+async function initPreloader() {
+  const container = document.querySelector('.preloader-content');
+  const preloader = document.getElementById('preloader');
+
+  if (!container || !preloader) {
+    startHeroAnimation(); // Fallback
+    return;
+  }
+
+  try {
+    // Reuse the same intricate SVG
+    const response = await fetch('assets/174e3b42b6e852b56e5244f2aca1bb877cbabef0.svg');
+    const svgText = await response.text();
+
+    container.innerHTML = svgText;
+    const svg = container.querySelector('svg');
+
+    if (!svg) { throw new Error("No SVG found"); }
+
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    svg.style.overflow = 'visible';
+
+    const paths = svg.querySelectorAll('path');
+
+    // Initial state: Hidden
+    gsap.set(paths, {
+      opacity: 0,
+      fill: "#1a1a1a",
+      fillOpacity: 0
+    });
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        // Fade out preloader
+        gsap.to(preloader, {
+          opacity: 0,
+          duration: 1.0,
+          ease: "power2.inOut",
+          onComplete: () => {
+            preloader.remove();
+            startHeroAnimation();
+          }
+        });
+      }
+    });
+
+    // Simple Fade In Animation (No line drawing)
+    tl.to(paths, {
+      opacity: 1,
+      fillOpacity: 1,
+      duration: 1.5,
+      ease: "power2.out"
+    });
+
+    // Hold for a moment
+    tl.to({}, { duration: 0.5 });
+
+  } catch (err) {
+    console.error("Preloader error:", err);
+    preloader.style.display = 'none';
+    startHeroAnimation();
+  }
+}
+
+// Start everything on load
+window.addEventListener('load', initPreloader);
 
 // ============================================
 // Lenis Smooth Scroll
