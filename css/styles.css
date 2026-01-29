@@ -602,3 +602,265 @@ html.lenis body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================
+   About Event Section (Nuevo)
+   ============================================ */
+#sobre-evento {
+  padding-top: 100px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.about-content {
+  margin-bottom: 80px;
+}
+
+.about-title {
+  font-family: var(--font-sans);
+  font-size: 34px;
+  /* Ajustado a 34px */
+  font-weight: 300;
+  /* Light */
+  line-height: 1.4;
+  color: #707070;
+  max-width: 900px;
+  margin-bottom: 60px;
+}
+
+.about-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+}
+
+.btn--outline {
+  border: 1px solid #d1d1d1;
+  color: #8b908f;
+  font-size: 11px;
+  padding: 12px 24px;
+}
+
+.btn--outline:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.about-icon svg {
+  display: block;
+  opacity: 0.8;
+}
+
+/* Infinite Carousel */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.carousel-slide {
+  width: 33.3vw;
+  /* 3 imágenes visibles en pantalla aprox */
+  height: 600px;
+  padding-right: 20px;
+  flex-shrink: 0;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+
+  /* Mueve la mitad porque duplicamos las imágenes */
+}
+
+/* Responsive About */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 32px;
+  }
+
+  .about-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .about-icon {
+    align-self: flex-end;
+  }
+
+  .carousel-slide {
+    width: 80vw;
+    height: 400px;
+  }
+}
+
+/* ============================================
+   Transformation Journey Section (Nuevo)
+   ============================================ */
+.journey-grid {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 40px;
+  margin-bottom: 60px;
+  align-items: flex-start;
+}
+
+.journey-content {
+  max-width: 800px;
+}
+
+.about-title.scale-down {
+  font-size: 34px;
+  margin-bottom: 0;
+  color: #8b908f;
+}
+
+.journey-icon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.journey-icon img {
+  width: 150px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.journey-image-container {
+  width: 100%;
+  padding: 0 40px;
+  /* Margen lateral en el contenedor si se desea, o full-bleed */
+}
+
+.journey-image-container .full-width-image {
+  width: 100%;
+  height: auto;
+  max-height: 800px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .journey-icon {
+    justify-content: flex-start;
+    /* Ocultar o mover si es necesario */
+  }
+
+  .journey-image-container {
+    padding: 0;
+  }
+
+  .about-title.scale-down {
+    font-size: 24px;
+  }
+}
+/* ============================================
+   Nature Slider Section
+   ============================================ */
+.nature-slider-container {
+  width: 100%;
+  margin-top: 60px;
+}
+
+.nature-swiper {
+  width: 100%;
+  height: 80vh; /* Ajustable según preferencia, full-screen o casi */
+  min-height: 600px;
+}
+
+.nature-swiper .full-width-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.transformation-controls {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.slider-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #eee; /* Opcional, para separar */
+  padding-top: 20px;
+}
+
+.slider-caption {
+  margin: 0;
+  max-width: 50%;
+  font-size: 34px !important; /* Forzar el tamaño estándar 34px */
+  color: #8b908f;
+  font-weight: 300;
+}
+
+.slider-navigation {
+  display: flex;
+  gap: 20px;
+}
+
+.slider-prev, .slider-next {
+  min-width: 120px;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nature-swiper {
+    height: 50vh;
+    min-height: 400px;
+  }
+  
+  .slider-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  
+  .slider-caption {
+    max-width: 100%;
+    font-size: 24px !important;
+  }
+  
+  .slider-navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .slider-prev, .slider-next {
+    flex: 1;
+  }
+}

@@ -25,6 +25,9 @@
         crossorigin>
     <link rel="preload" href="NanumMyeongjo/NanumMyeongjo-Regular.ttf" as="font" type="font/ttf" crossorigin>
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
 
@@ -98,96 +101,116 @@
 
             <!-- Scroll Indicator -->
             <div class="scroll-indicator">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="11" stroke="white" stroke-width="1" />
-                    <path d="M12 8V16M12 16L8 12M12 16L16 12" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
+                <svg width="27" height="36" viewBox="0 0 27 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M25.9966 12.4924C25.3068 10.7714 24.3662 9.23863 23.2095 7.94968C22.0181 6.6677 20.5757 5.62957 18.9174 4.91194C17.7608 4.37546 16.4857 4.03406 15.1548 3.88078V2.89143L16.7714 0H10.2286L11.8452 2.89143V3.88078C10.5074 4.03406 9.23923 4.37546 8.08258 4.91194C6.42426 5.62957 4.98194 6.6677 3.79045 7.94968C2.63381 9.23166 1.69316 10.7714 1.00335 12.4924C0.348387 14.2133 0 16.0596 0 18.0035C0 19.9474 0.341419 21.7937 1.00335 23.5146C1.69316 25.2355 2.63381 26.7405 3.79045 28.0225C4.98194 29.3044 6.42426 30.3426 8.08258 31.095C9.23923 31.6315 10.5143 31.9729 11.8452 32.1262V33.1434L10.2286 36H16.7714L15.1548 33.1434V32.1262C16.4926 31.9729 17.7608 31.6315 18.9174 31.095C20.5757 30.3426 22.0181 29.3114 23.2095 28.0225C24.3662 26.7405 25.3068 25.2355 25.9966 23.5146C26.6516 21.7937 27 19.9474 27 18.0035C27 16.0596 26.6586 14.2133 25.9966 12.4924ZM10.3959 27.7438C9.14168 27.054 8.0129 26.1482 7.1071 25.0195C6.16645 23.8908 5.41394 22.6089 4.88439 21.1388C4.35484 19.7314 4.104 18.2264 4.104 16.7563C4.104 15.1887 4.35484 13.7813 4.82168 12.6247C5.32335 11.4333 5.97832 10.43 6.76568 9.6497C7.54606 8.86936 8.45884 8.24231 9.46219 7.83124C10.2426 7.51074 11.0439 7.32959 11.8521 7.26689V28.3778C11.3574 28.2175 10.8697 28.0085 10.4028 27.7507L10.3959 27.7438ZM22.2689 23.0478C21.8926 24.1765 21.3004 25.1798 20.5479 26.0228C19.8302 26.8659 18.9174 27.5556 17.8862 28.0294C17.0431 28.4405 16.1373 28.6774 15.1548 28.754V7.67099C15.5102 7.78943 15.8725 7.93575 16.2279 8.10993C17.4472 8.67428 18.576 9.51732 19.5445 10.5554C20.5479 11.6214 21.3631 12.9383 21.9554 14.4084C22.5825 15.9133 22.896 17.5994 22.896 19.4178C22.896 20.6998 22.7079 21.9261 22.2689 23.0478Z"
+                        fill="#EFEAE3" />
                 </svg>
             </div>
         </div>
     </section>
 
+
+
     <!-- About Event Section -->
-    <section class="section" id="evento">
+    <section class="section" id="sobre-evento">
         <div class="container">
-            <p class="section__label">SOBRE NUESTRO EVENTO</p>
+            <span class="section__label">SOBRE NUESTRO EVENTO</span>
 
-            <div class="content-grid">
-                <div class="content-grid__text">
-                    <h2 class="section__title">
-                        La Universidad De La Alquimia inicia un nuevo viaje de transformación desde el monumento natural
-                        Cerro María Lionza
-                    </h2>
+            <div class="about-content">
+                <h2 class="about-title">
+                    La Universidad De La Alquimia inicia un nuevo viaje de transformación desde el monumento natural
+                    Cerro María Lionza
+                </h2>
 
+                <div class="about-actions">
                     <div class="button-group">
-                        <button class="btn btn--outline">VER LOCACIÓN</button>
-                        <button class="btn btn--outline">INSCRIBIRSE</button>
+                        <a href="#inscripcion" class="btn btn--outline">INSCRÍBETE</a>
+                        <a href="#ubicacion" class="btn btn--outline">VER LOCACIÓN</a>
                     </div>
-                </div>
 
-                <div class="content-grid__images">
-                    <div class="image-stack">
-                        <img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Naturaleza"
-                            class="image-stack__img image-stack__img--left">
-                        <div class="image-stack__right">
-                            <img src="assets/00c94ad1f2fd1d3dc4455fdd26ffae57277804f6.svg" alt="Símbolo"
-                                class="image-stack__img image-stack__img--symbol">
-                            <img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Meditación"
-                                class="image-stack__img">
-                        </div>
+                    <div class="about-icon">
+                        <svg width="40" height="40" viewBox="0 0 27 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M25.9966 12.4924C25.3068 10.7714 24.3662 9.23863 23.2095 7.94968C22.0181 6.6677 20.5757 5.62957 18.9174 4.91194C17.7608 4.37546 16.4857 4.03406 15.1548 3.88078V2.89143L16.7714 0H10.2286L11.8452 2.89143V3.88078C10.5074 4.03406 9.23923 4.37546 8.08258 4.91194C6.42426 5.62957 4.98194 6.6677 3.79045 7.94968C2.63381 9.23166 1.69316 10.7714 1.00335 12.4924C0.348387 14.2133 0 16.0596 0 18.0035C0 19.9474 0.341419 21.7937 1.00335 23.5146C1.69316 25.2355 2.63381 26.7405 3.79045 28.0225C4.98194 29.3044 6.42426 30.3426 8.08258 31.095C9.23923 31.6315 10.5143 31.9729 11.8452 32.1262V33.1434L10.2286 36H16.7714L15.1548 33.1434V32.1262C16.4926 31.9729 17.7608 31.6315 18.9174 31.095C20.5757 30.3426 22.0181 29.3114 23.2095 28.0225C24.3662 26.7405 25.3068 25.2355 25.9966 23.5146C26.6516 21.7937 27 19.9474 27 18.0035C27 16.0596 26.6586 14.2133 25.9966 12.4924ZM10.3959 27.7438C9.14168 27.054 8.0129 26.1482 7.1071 25.0195C6.16645 23.8908 5.41394 22.6089 4.88439 21.1388C4.35484 19.7314 4.104 18.2264 4.104 16.7563C4.104 15.1887 4.35484 13.7813 4.82168 12.6247C5.32335 11.4333 5.97832 10.43 6.76568 9.6497C7.54606 8.86936 8.45884 8.24231 9.46219 7.83124C10.2426 7.51074 11.0439 7.32959 11.8521 7.26689V28.3778C11.3574 28.2175 10.8697 28.0085 10.4028 27.7507L10.3959 27.7438ZM22.2689 23.0478C21.8926 24.1765 21.3004 25.1798 20.5479 26.0228C19.8302 26.8659 18.9174 27.5556 17.8862 28.0294C17.0431 28.4405 16.1373 28.6774 15.1548 28.754V7.67099C15.5102 7.78943 15.8725 7.93575 16.2279 8.10993C17.4472 8.67428 18.576 9.51732 19.5445 10.5554C20.5479 11.6214 21.3631 12.9383 21.9554 14.4084C22.5825 15.9133 22.896 17.5994 22.896 19.4178C22.896 20.6998 22.7079 21.9261 22.2689 23.0478Z"
+                                fill="#8B908F" />
+                        </svg>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Infinite Carousel -->
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- Images repeated for seamless loop -->
+                <div class="carousel-slide"><img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png"
+                        alt="Evento 1"></div>
+                <div class="carousel-slide"><img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png"
+                        alt="Evento 2"></div>
+                <div class="carousel-slide"><img src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png"
+                        alt="Evento 3"></div>
+                <!-- Duplicate for loop -->
+                <div class="carousel-slide"><img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png"
+                        alt="Evento 1"></div>
+                <div class="carousel-slide"><img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png"
+                        alt="Evento 2"></div>
+                <div class="carousel-slide"><img src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png"
+                        alt="Evento 3"></div>
+            </div>
+        </div>
     </section>
 
-    <!-- Transformation Section -->
-    <section class="section section--dark" id="transformacion">
-        <div class="container">
-            <p class="section__label">UN NUEVO VIAJE DE TRANSFORMACIÓN</p>
 
-            <div class="content-grid content-grid--reverse">
-                <div class="content-grid__text">
-                    <h2 class="section__title">
+    <!-- Transformation Journey Section -->
+    <section class="section" id="transformacion-viaje">
+        <div class="container">
+            <span class="section__label">UN NUEVO VIAJE DE TRANSFORMACIÓN</span>
+
+            <div class="journey-grid">
+                <div class="journey-content">
+                    <h2 class="about-title scale-down">
                         La décima segunda edición de este evento será desde el 30 de octubre al 1 de noviembre. Una
                         invitación a superar los miedos más profundos y restaurar la conexión con la Madre Tierra.
                     </h2>
                 </div>
 
-                <div class="content-grid__image">
-                    <img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Transformación"
-                        class="full-image">
+                <div class="journey-icon">
+                    <img src="assets/174e3b42b6e852b56e5244f2aca1bb877cbabef0.svg" alt="Símbolo Transformación">
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Large Image Section -->
-    <section class="section section--no-padding">
-        <img src="assets/3003acb134d9e4530071c8aeb3fa937aa0a5825a.png" alt="Cerro María Lionza"
-            class="full-width-image">
-    </section>
+        <!-- Nature Slider Section -->
+        <div class="nature-slider-container">
+            <!-- Swiper -->
+            <div class="swiper nature-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/Paisaje-Landing-hero.jpg" alt="Slide 1" class="full-width-image">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Slide 2"
+                            class="full-width-image">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Slide 3"
+                            class="full-width-image">
+                    </div>
+                </div>
+            </div>
 
-    <!-- Nature Section -->
-    <section class="section" id="naturaleza">
-        <div class="container">
-            <div class="content-split">
-                <div class="content-split__left">
-                    <h2 class="section__title section__title--large">
+            <!-- Controls below slider -->
+            <div class="container transformation-controls">
+                <div class="slider-footer">
+                    <h2 class="about-title scale-down slider-caption">
                         Encuentro con la naturaleza
                     </h2>
 
-                    <div class="button-group">
-                        <button class="btn btn--outline">ANTERIOR</button>
-                        <button class="btn btn--outline">SIGUIENTE</button>
+                    <div class="slider-navigation">
+                        <button class="btn btn--outline slider-prev">ANTERIOR</button>
+                        <button class="btn btn--outline slider-next">SIGUIENTE</button>
                     </div>
-                </div>
-
-                <div class="content-split__right">
-                    <p class="text-large">
-                        Asiste a uno de los eventos más importantes del año diseñado para tu crecimiento y
-                        transformación, conectándote profundamente con el Corazón de la Madre Tierra.
-                    </p>
                 </div>
             </div>
         </div>
@@ -302,7 +325,28 @@
     </section>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper(".nature-swiper", {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                grabCursor: true, // Mouse drag
+                navigation: {
+                    nextEl: ".slider-next",
+                    prevEl: ".slider-prev",
+                },
+                keyboard: {
+                    enabled: true,
+                },
+                speed: 600,
+            });
+        });
+    </script>
 </body>
 
 </html>
