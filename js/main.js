@@ -3,6 +3,31 @@
  * Main JavaScript File
  */
 
+// ================= ===========================
+// Hero Entrance Animation
+// ============================================
+window.addEventListener('load', () => {
+  const heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1.2 } });
+
+  heroTl.from(".hero__title", {
+    y: 30,
+    opacity: 0,
+    delay: 0.5
+  })
+    .from(".hero__location", {
+      y: 20,
+      opacity: 0
+    }, "-=0.9")
+    .from(".hero__dates", {
+      y: 20,
+      opacity: 0
+    }, "-=0.9")
+    .from(".hero__form", {
+      y: 20,
+      opacity: 0
+    }, "-=0.9");
+});
+
 // ============================================
 // Lenis Smooth Scroll
 // ============================================
@@ -293,6 +318,90 @@ function toggleAccordion(element) {
     window.dispatchEvent(new Event('resize'));
   }, 600);
 }
+
+// ============================================
+// Journey Logo Drawing Animation
+// ============================================
+async function initJourneyLogoAnimation() {
+  const container = document.querySelector('#phi-target');
+  if (!container) return;
+
+  try {
+    // Fetch the large SVG to avoid inlining issues/limitations
+    const response = await fetch('assets/174e3b42b6e852b56e5244f2aca1bb877cbabef0.svg');
+    const svgText = await response.text();
+
+    // Inject and setup
+    container.innerHTML = svgText;
+    const svg = container.querySelector('svg');
+    if (!svg) return;
+
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    svg.style.overflow = 'visible';
+
+    const paths = svg.querySelectorAll('path');
+
+    // Initial state: transparent with light stroke
+    gsap.set(paths, {
+      stroke: "#8B908F",
+      strokeWidth: 0.8,
+      fillOpacity: 0,
+      opacity: 0
+    });
+
+    // Create ScrollTriggered Animation
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#transformacion-viaje",
+        start: "top 70%",
+        once: true
+      }
+    });
+
+    // 1. Fade in the lines first
+    tl.to(paths, {
+      opacity: 1,
+      duration: 1,
+      stagger: 0.002,
+      ease: "power2.out"
+    });
+
+    // 2. Animate the path drawing (constructing)
+    // We use a safe way to get length for many paths
+    paths.forEach(path => {
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+
+      tl.to(path, {
+        strokeDashoffset: 0,
+        duration: 2.5,
+        ease: "power1.inOut"
+      }, 0.5); // Start slightly after fade in
+    });
+
+    // 3. Fade in the fills once drawing is mostly done
+    tl.to(paths, {
+      fillOpacity: 0.8,
+      duration: 2,
+      stagger: 0.003,
+      ease: "power1.inOut"
+    }, "-=1.5");
+
+    // 4. Subtle scale up for a premium feel
+    tl.from(svg, {
+      scale: 0.95,
+      duration: 3,
+      ease: "power2.out"
+    }, 0);
+
+  } catch (err) {
+    console.error("Failed to load or animate SVG:", err);
+  }
+}
+
+// Call on load
+window.addEventListener('load', initJourneyLogoAnimation);
 
 // ============================================
 // Initialize
