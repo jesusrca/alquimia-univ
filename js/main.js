@@ -6,24 +6,21 @@
 // ============================================
 // Lenis Smooth Scroll
 // ============================================
-const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  orientation: 'vertical',
-  gestureOrientation: 'vertical',
-  smoothWheel: true,
-  wheelMultiplier: 1,
-  smoothTouch: false,
-  touchMultiplier: 2,
-  infinite: false,
-});
+if (typeof Lenis !== 'undefined') {
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    smoothWheel: true,
+  });
 
-function raf(time) {
-  lenis.raf(time);
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
   requestAnimationFrame(raf);
 }
-
-requestAnimationFrame(raf);
 
 // ============================================
 // Mobile Menu
@@ -175,26 +172,50 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ============================================
-// Scroll Reveal Animations
+// Enhanced Scroll Reveal
 // ============================================
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+const revealObserverOptions = {
+  threshold: 0.01, // Trigger as soon as 1% is visible
+  rootMargin: '0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      observer.unobserve(entry.target);
+      entry.target.classList.add('active');
     }
   });
-}, observerOptions);
+}, revealObserverOptions);
 
-// Observe all elements with data-scroll-reveal attribute
-document.querySelectorAll('[data-scroll-reveal]').forEach(el => {
-  observer.observe(el);
-});
+// Function to initialize reveal elements
+function initReveals() {
+  const elements = document.querySelectorAll('.reveal-up');
+
+  // Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.05 });
+
+  elements.forEach(el => observer.observe(el));
+
+  // Fallback: Check on scroll manually (for safe measure)
+  window.addEventListener('scroll', () => {
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) {
+        el.classList.add('active');
+      }
+    });
+  });
+}
+
+// Kick off
+initReveals();
+window.addEventListener('load', initReveals);
 
 // ============================================
 // Smooth Scroll for Anchor Links

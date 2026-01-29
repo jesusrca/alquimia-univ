@@ -77,7 +77,6 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -164,7 +163,7 @@ html.lenis body {
 
 .nav {
   display: flex;
-  gap: 50px;
+  gap: 80px;
 }
 
 .nav__link {
@@ -184,6 +183,71 @@ html.lenis body {
 
 .menu-toggle {
   display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  transform-origin: left center;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 991px) {
+  .header {
+    padding: 30px 40px;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1000;
+    padding: 40px;
+  }
+
+  .nav.active {
+    transform: translateX(0);
+  }
+
+  .nav__link {
+    font-size: 24px;
+    letter-spacing: 0.2em;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
 
 /* ============================================
@@ -220,10 +284,11 @@ html.lenis body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: left;
+  text-align: center;
+  align-items: center;
   /* Alineado a la izquierda */
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
   z-index: 10;
   padding: 0 40px;
   display: flex;
@@ -234,11 +299,11 @@ html.lenis body {
 
 .hero__title {
   font-family: var(--font-serif);
-  font-size: 90px;
-  /* Reducido de 110px */
+  font-size: 81px;
+  /* Reducido un 10% de 90px */
   font-weight: 400;
   line-height: 1;
-  margin: 0 0 30px 0;
+  margin: 0 0 50px 0;
   letter-spacing: -0.01em;
 }
 
@@ -376,19 +441,32 @@ html.lenis body {
   letter-spacing: 0.1em;
   color: var(--color-text-secondary);
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
+
+#sobre-evento .section__label {
+  margin-bottom: 100px;
+}
+
+#transformacion-viaje .section__label {
+  margin-bottom: 100px;
+}
+
+#transformacion-viaje .journey-grid {
+  margin-bottom: 100px;
+}
+
 
 .section__title {
   font-family: var(--font-sans);
   font-size: 40px;
   line-height: 1.2;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   font-weight: 400;
 }
 
 .section__title--large {
-  font-size: 60px;
+  font-size: 50px;
 }
 
 /* Grid for Content */
@@ -718,24 +796,27 @@ html.lenis body {
    ============================================ */
 #sobre-evento {
   padding-top: 100px;
+  padding-bottom: 0;
   background-color: #fff;
   overflow: hidden;
 }
 
 .about-content {
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .about-title {
   font-family: var(--font-sans);
   font-size: 34px;
-  /* Ajustado a 34px */
   font-weight: 300;
-  /* Light */
   line-height: 1.4;
   color: #707070;
   max-width: 900px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+}
+
+#sobre-evento .about-title {
+  margin-bottom: 100px;
 }
 
 .about-actions {
@@ -784,7 +865,7 @@ html.lenis body {
 .carousel-slide {
   width: 33.3vw;
   /* 3 imágenes visibles en pantalla aprox */
-  height: 600px;
+  height: 80vh;
   padding-right: 20px;
   flex-shrink: 0;
 }
@@ -830,6 +911,10 @@ html.lenis body {
   }
 }
 
+#transformacion-viaje {
+  padding-top: 60px;
+}
+
 /* ============================================
    Transformation Journey Section (Nuevo)
    ============================================ */
@@ -837,7 +922,7 @@ html.lenis body {
   display: grid;
   grid-template-columns: 1fr 200px;
   gap: 40px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   align-items: flex-start;
 }
 
@@ -846,10 +931,17 @@ html.lenis body {
 }
 
 .about-title.scale-down {
+  font-family: var(--font-sans);
   font-size: 34px;
-  margin-bottom: 0;
+  margin-bottom: 50px;
   color: #8b908f;
+  font-weight: 300;
 }
+
+#transformacion-viaje .about-title.scale-down {
+  margin-bottom: 0;
+}
+
 
 .journey-icon {
   display: flex;
@@ -901,14 +993,14 @@ html.lenis body {
    ============================================ */
 .nature-slider-container {
   width: 100%;
-  margin-top: 60px;
+  margin-top: 0;
 }
 
 .nature-swiper {
   width: 100%;
   height: 80vh;
   /* Ajustable según preferencia, full-screen o casi */
-  min-height: 600px;
+  min-height: 400px;
 }
 
 .nature-swiper .full-width-image {
@@ -919,7 +1011,7 @@ html.lenis body {
 }
 
 .transformation-controls {
-  padding-top: 40px;
+  padding-top: 15px;
   padding-bottom: 40px;
 }
 
@@ -927,7 +1019,7 @@ html.lenis body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 0;
 }
 
 .slider-caption {
@@ -958,7 +1050,7 @@ html.lenis body {
   }
 
   .slider-footer {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: flex-start;
     gap: 30px;
   }
@@ -976,5 +1068,138 @@ html.lenis body {
   .slider-prev,
   .slider-next {
     flex: 1;
+  }
+}
+
+/* ============================================
+   Footer Section
+   ============================================ */
+.footer {
+  margin-top: 120px;
+  padding: 100px 0 40px;
+  background-color: #000;
+  color: #fff;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer__logo svg {
+  height: 30px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.footer__description {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 400px;
+}
+
+.footer__heading {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer__link {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+  color: #fff;
+}
+
+.footer__bottom {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__copyright {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__social-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: 0.1em;
+}
+
+.footer__social-link:hover {
+  color: #fff;
+}
+
+/* ============================================
+   Enhanced Animations
+   ============================================ */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-up.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
   }
 }
