@@ -353,33 +353,51 @@ html.lenis body {
   width: 100%;
   max-width: 500px;
   margin: 0;
+  position: relative;
 }
 
 .hero__email-input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   border: none;
-  padding: 18px 24px;
+  padding: 18px 60px 18px 24px;
   font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.1em;
-  color: #fff;
+  color: #000;
   text-transform: uppercase;
   outline: none;
   transition: background 0.3s;
 }
 
 .hero__email-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .hero__email-input:focus {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .hero__submit {
-  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.hero__submit:hover {
+  opacity: 1;
 }
 
 /* Scroll Indicator */
@@ -873,8 +891,16 @@ html.lenis body {
 }
 
 .carousel-slide {
+  width: 80vw;
+  /* Ocupa casi toda la pantalla en móvil */
   height: 80vh;
-  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .carousel-slide {
+    width: 33.333vw;
+    /* 3 imágenes por vista en desktop */
+  }
 }
 
 .carousel-slide img {

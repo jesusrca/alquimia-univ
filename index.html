@@ -31,8 +31,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+    <!-- Lenis Smooth Scroll (Moved to end of body for consistency) -->
 </head>
 
 <body>
@@ -91,9 +90,11 @@
                     <input type="email" class="hero__email-input" placeholder="INSCRÍBETE AQUÍ" required
                         aria-label="Correo electrónico para inscripción">
                     <button type="submit" class="hero__submit" aria-label="Enviar inscripción">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                        <svg width="24" height="24" viewBox="0 0 512 512" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M65.728 290.704L215.08 260.832C228.416 258.168 228.416 253.832 215.08 251.168L65.728 221.296C56.832 219.52 48.168 210.848 46.392 201.96L16.52 52.608C13.848 39.264 21.712 33.064 34.072 38.768L489.824 249.112C498.056 252.912 498.056 259.088 489.824 262.888L34.072 473.232C21.712 478.936 13.848 472.736 16.52 459.392L46.392 310.04C48.168 301.152 56.832 292.48 65.728 290.704Z"
+                                fill="currentColor" />
                         </svg>
                     </button>
                 </form>
@@ -144,6 +145,12 @@
         <div class="carousel-container">
             <div class="swiper infinite-swiper">
                 <div class="swiper-wrapper">
+                    <div class="swiper-slide carousel-slide"><img
+                            src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Evento 1"></div>
+                    <div class="swiper-slide carousel-slide"><img
+                            src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Evento 2"></div>
+                    <div class="swiper-slide carousel-slide"><img
+                            src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png" alt="Evento 3"></div>
                     <div class="swiper-slide carousel-slide"><img
                             src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Evento 1"></div>
                     <div class="swiper-slide carousel-slide"><img
@@ -394,30 +401,31 @@
     <!-- Initialize Swiper -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // First Swiper (Infinite/Marquee-like)
+            // First Swiper (Infinite/Marquee)
             const infiniteSwiper = new Swiper(".infinite-swiper", {
-                slidesPerView: 1.2,
-                spaceBetween: 20,
+                slidesPerView: "auto",
+                spaceBetween: 24,
                 loop: true,
                 speed: 8000,
+                allowTouchMove: true,
                 autoplay: {
                     delay: 0,
                     disableOnInteraction: false,
                 },
                 grabCursor: true,
-                breakpoints: {
-                    768: {
-                        slidesPerView: 3,
+                on: {
+                    init: function () {
+                        this.wrapperEl.style.transitionTimingFunction = 'linear';
                     }
                 }
             });
 
             // Second Swiper (Nature)
-            const swiper = new Swiper(".nature-swiper", {
+            const natureSwiper = new Swiper(".nature-swiper", {
                 slidesPerView: 1,
                 spaceBetween: 0,
                 loop: true,
-                grabCursor: true, // Mouse drag
+                grabCursor: true,
                 navigation: {
                     nextEl: ".slider-next",
                     prevEl: ".slider-prev",
