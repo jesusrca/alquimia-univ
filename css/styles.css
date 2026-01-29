@@ -1204,7 +1204,7 @@ html.lenis body {
 .reveal-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+  transition: opacity 1.5s ease-out 0.2s, transform 1.5s ease-out 0.2s;
   will-change: opacity, transform;
 }
 

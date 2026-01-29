@@ -7,7 +7,7 @@
 // Hero Entrance Animation
 // ============================================
 window.addEventListener('load', () => {
-  const heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1.2 } });
+  const heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 2 } });
 
   heroTl.from(".hero__title", {
     y: 30,
@@ -17,15 +17,15 @@ window.addEventListener('load', () => {
     .from(".hero__location", {
       y: 20,
       opacity: 0
-    }, "-=0.9")
+    }, "-=1.5")
     .from(".hero__dates", {
       y: 20,
       opacity: 0
-    }, "-=0.9")
+    }, "-=1.5")
     .from(".hero__form", {
       y: 20,
       opacity: 0
-    }, "-=0.9");
+    }, "-=1.5");
 });
 
 // ============================================
@@ -218,9 +218,13 @@ function initReveals() {
 
   // Intersection Observer
   const observer = new IntersectionObserver((entries) => {
+    let delayAcc = 0;
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && !entry.target.classList.contains('active')) {
+        // Add stagger delay relative to the batch
+        entry.target.style.transitionDelay = `${0.2 + delayAcc}s`;
         entry.target.classList.add('active');
+        delayAcc += 0.15;
       }
     });
   }, { threshold: 0.05 });
