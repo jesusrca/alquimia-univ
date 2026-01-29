@@ -765,7 +765,7 @@ html.lenis body {
 
 .package-box--dark {
   background-color: #8b908f;
-  color: #ffffff;
+  color: #C3D9D5;
 }
 
 .package-box--light {
@@ -854,6 +854,9 @@ html.lenis body {
   .package-box {
     padding: 40px 30px;
     min-height: auto;
+    margin-left: calc(-1 * var(--container-padding));
+    margin-right: calc(-1 * var(--container-padding));
+    width: calc(100% + 2 * var(--container-padding));
   }
 
   .requirements-grid {
@@ -947,8 +950,8 @@ html.lenis body {
   color: #8b908f;
   line-height: 1.5;
   max-width: 600px;
-  margin-left: 190px;
-  /* Align with image start (150px col + 40px gap) */
+  margin-left: 290px;
+  /* Align with image start (250px col + 40px gap) */
   margin-bottom: 80px;
   /* Spacing before map/camping */
   text-align: left;
@@ -992,7 +995,7 @@ html.lenis body {
 .services-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0;
 }
 
 .service-card {
