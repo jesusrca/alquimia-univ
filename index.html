@@ -443,21 +443,18 @@
                 on: {
                     slideChange: function () {
                         const activeSlide = this.slides[this.activeIndex];
-                        // When loop is true, Swiper adds duplicate slides. We need to handle that.
-                        // However, Swiper usually copies attributes. Let's check.
-                        // Use realIndex to find the original slide if needed, but checking the active element is safer for data attributes.
-                        // Or we can query based on data-swiper-slide-index if attributes aren't preserved on clones (they usually are).
-
                         const title = activeSlide.getAttribute('data-title');
                         const captionEl = document.querySelector('.slider-caption');
 
                         if (title && captionEl) {
-                            // Simple fade effect
+                            // 1. Fade out
                             captionEl.style.opacity = 0;
+
+                            // 2. Wait for transition (500ms) then change text & fade in
                             setTimeout(() => {
                                 captionEl.textContent = title;
                                 captionEl.style.opacity = 1;
-                            }, 200);
+                            }, 500);
                         }
                     }
                 }

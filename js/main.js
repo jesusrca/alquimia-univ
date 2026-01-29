@@ -78,7 +78,7 @@ async function initPreloader() {
         // Fade out preloader
         gsap.to(preloader, {
           opacity: 0,
-          duration: 1.0,
+          duration: 0.8,
           ease: "power2.inOut",
           onComplete: () => {
             preloader.remove();
@@ -97,7 +97,7 @@ async function initPreloader() {
     });
 
     // Hold for a moment
-    tl.to({}, { duration: 0.5 });
+    tl.to({}, { duration: 0.3 });
 
   } catch (err) {
     console.error("Preloader error:", err);
