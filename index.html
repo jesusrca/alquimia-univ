@@ -28,6 +28,9 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <!-- Tailwind (compiled) -->
+    <link rel="stylesheet" href="css/tailwind.css">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
 
@@ -58,26 +61,33 @@
                     </svg>
                 </div>
 
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="header__actions">
+                    <nav class="nav" id="mainNav">
+                        <a href="#inicio" class="nav__link">INICIO</a>
+                        <a href="#programa" class="nav__link">PROGRAMA</a>
+                        <a href="#paquetes" class="nav__link">PAQUETES</a>
+                        <a href="#servicios" class="nav__link">SERVICIOS</a>
+                        <a href="#contacto" class="nav__link">CONTACTO</a>
+                    </nav>
 
-                <nav class="nav" id="mainNav">
-                    <a href="#inicio" class="nav__link">INICIO</a>
-                    <a href="#programa" class="nav__link">PROGRAMA</a>
-                    <a href="#paquetes" class="nav__link">PAQUETES</a>
-                    <a href="#servicios" class="nav__link">SERVICIOS</a>
-                    <a href="#contacto" class="nav__link">CONTACTO</a>
-                </nav>
+                    <div class="header__cart" aria-label="Ver carrito">
+                        <span class="accelpay-view-cart">CART (1)</span>
+                    </div>
+
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </header>
 
         <!-- Hero Content -->
         <div class="hero">
             <div class="hero__background">
-                <img src="assets/Paisaje-Landing-hero.jpg" alt="Quibayo 2026" class="hero__image">
+                <img src="assets/Paisaje-Landing-hero.jpg" alt="Quibayo 2026" class="hero__image" width="1920"
+                    height="1080">
                 <div class="hero__overlay"></div>
             </div>
 
@@ -97,7 +107,8 @@
                 </div>
 
                 <form class="hero__form" id="heroEmailForm">
-                    <input type="email" class="hero__email-input" placeholder="INSCRÍBETE AQUÍ" required
+                    <label for="heroEmail" class="visually-hidden">Correo electrónico para inscripción</label>
+                    <input type="email" id="heroEmail" class="hero__email-input" placeholder="INSCRÍBETE AQUÍ" required
                         aria-label="Correo electrónico para inscripción">
                     <button type="submit" class="hero__submit" aria-label="Enviar inscripción">
                         <svg width="24" height="24" viewBox="0 0 512 512" fill="none"
@@ -151,18 +162,24 @@
         <div class="carousel-container">
             <div class="swiper infinite-swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide carousel-slide"><img
-                            src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Evento 1"></div>
-                    <div class="swiper-slide carousel-slide"><img
-                            src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Evento 2"></div>
-                    <div class="swiper-slide carousel-slide"><img
-                            src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png" alt="Evento 3"></div>
-                    <div class="swiper-slide carousel-slide"><img
-                            src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Evento 1"></div>
-                    <div class="swiper-slide carousel-slide"><img
-                            src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Evento 2"></div>
-                    <div class="swiper-slide carousel-slide"><img
-                            src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png" alt="Evento 3"></div>
+                    <div class="swiper-slide carousel-slide"><img loading="lazy"
+                            src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Evento 1" width="800"
+                            height="600"></div>
+                    <div class="swiper-slide carousel-slide"><img loading="lazy"
+                            src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Evento 2" width="800"
+                            height="600"></div>
+                    <div class="swiper-slide carousel-slide"><img loading="lazy"
+                            src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png" alt="Evento 3" width="800"
+                            height="600"></div>
+                    <div class="swiper-slide carousel-slide"><img loading="lazy"
+                            src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Evento 1" width="800"
+                            height="600"></div>
+                    <div class="swiper-slide carousel-slide"><img loading="lazy"
+                            src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Evento 2" width="800"
+                            height="600"></div>
+                    <div class="swiper-slide carousel-slide"><img loading="lazy"
+                            src="assets/148ec1b6ece9873fcd7efd7c92093c94ef522963.png" alt="Evento 3" width="800"
+                            height="600"></div>
                 </div>
             </div>
         </div>
@@ -194,15 +211,15 @@
             <div class="swiper nature-swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" data-title="Encuentro con la naturaleza">
-                        <img src="assets/slide01.jpg" alt="Slide 1" class="full-width-image">
+                        <img src="assets/slide01.jpg" alt="Slide 1" class="full-width-image" width="1920" height="1080">
                     </div>
                     <div class="swiper-slide" data-title="Conexión con el ser">
-                        <img src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Slide 2"
-                            class="full-width-image">
+                        <img loading="lazy" src="assets/c3e64936f7ad568e24edd3df47e25c385c1094c8.png" alt="Slide 2"
+                            class="full-width-image" width="1920" height="1080">
                     </div>
                     <div class="swiper-slide" data-title="Renacer en la montaña">
-                        <img src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Slide 3"
-                            class="full-width-image">
+                        <img loading="lazy" src="assets/d443c9d99157182230d21b0cdf0fe6922f137d95.png" alt="Slide 3"
+                            class="full-width-image" width="1920" height="1080">
                     </div>
                 </div>
             </div>
@@ -237,7 +254,7 @@
             <div class="program-accordion">
                 <!-- Day 1 -->
                 <div class="program-day is-active">
-                    <div class="program-day__header" onclick="toggleAccordion(this)">
+                    <div class="program-day__header">
                         <span class="program-day__date">30. 10</span>
                         <span class="program-day__name">Jueves</span>
                         <span class="program-day__toggle">Ocultar itinerario</span>
@@ -269,7 +286,7 @@
 
                 <!-- Day 2 -->
                 <div class="program-day">
-                    <div class="program-day__header" onclick="toggleAccordion(this)">
+                    <div class="program-day__header">
                         <span class="program-day__date">31. 10</span>
                         <span class="program-day__name">Viernes</span>
                         <span class="program-day__toggle">Ver itinerario</span>
@@ -313,7 +330,7 @@
 
                 <!-- Day 3 -->
                 <div class="program-day">
-                    <div class="program-day__header" onclick="toggleAccordion(this)">
+                    <div class="program-day__header">
                         <span class="program-day__date">1. 11</span>
                         <span class="program-day__name">Sábado</span>
                         <span class="program-day__toggle">Ver itinerario</span>
@@ -423,8 +440,8 @@
             <div class="services-container">
                 <!-- Service 1: Alimentación -->
                 <div class="service-card">
-                    <img src="assets/alimentacion.jpg" alt="Plato saludable de alimentación consciente"
-                        class="service-card__image">
+                    <img loading="lazy" src="assets/alimentacion.jpg" alt="Plato saludable de alimentación consciente"
+                        class="service-card__image" width="1200" height="800">
                     <div class="service-card__content">
                         <h3 class="service-card__title">Alimentación</h3>
                         <p class="service-card__text">
@@ -437,7 +454,8 @@
 
                 <!-- Service 2: Terapias -->
                 <div class="service-card">
-                    <img src="assets/terapias.jpg" alt="Terapias relajantes y masajes" class="service-card__image">
+                    <img loading="lazy" src="assets/terapias.jpg" alt="Terapias relajantes y masajes"
+                        class="service-card__image" width="1200" height="800">
                     <div class="service-card__content">
                         <h3 class="service-card__title">Terapias</h3>
                         <p class="service-card__text">
@@ -454,7 +472,7 @@
     <!-- Hospedaje Section -->
     <section class="section reveal-up" id="hospedaje">
         <div class="container">
-            <h2 class="section__title section__title--large" style="margin-bottom: 30px;">Hospedaje</h2>
+            <h2 class="section__title section__title--large">Hospedaje</h2>
 
             <div class="lodging-description">
                 <p>Durante la estadía en el parque armaremos un campamento al aire libre que estará cubierto con toldos
@@ -475,8 +493,8 @@
                 <div class="lodging-item">
                     <div class="lodging-item__price" data-speed="0.9">USD$ 30</div>
                     <div class="lodging-item__image-wrapper">
-                        <img src="assets/hospedaje_matrimonial.jpg" alt="Habitación matrimonial"
-                            class="lodging-item__image">
+                        <img loading="lazy" src="assets/hospedaje_matrimonial.jpg" alt="Habitación matrimonial"
+                            class="lodging-item__image" width="800" height="600">
                     </div>
                     <div class="lodging-item__name" data-speed="1.1">Habitación matrimonial</div>
                 </div>
@@ -485,7 +503,8 @@
                 <div class="lodging-item">
                     <div class="lodging-item__price" data-speed="0.9">USD$ 50</div>
                     <div class="lodging-item__image-wrapper">
-                        <img src="assets/hospedaje_triple.jpg" alt="Habitación triple" class="lodging-item__image">
+                        <img loading="lazy" src="assets/hospedaje_triple.jpg" alt="Habitación triple"
+                            class="lodging-item__image" width="800" height="600">
                     </div>
                     <div class="lodging-item__name" data-speed="1.1">Habitación triple</div>
                 </div>
@@ -494,7 +513,8 @@
                 <div class="lodging-item">
                     <div class="lodging-item__price" data-speed="0.9">USD$ 15</div>
                     <div class="lodging-item__image-wrapper">
-                        <img src="assets/hospedaje_litera.jpg" alt="Cama litera" class="lodging-item__image">
+                        <img loading="lazy" src="assets/hospedaje_litera.jpg" alt="Cama litera"
+                            class="lodging-item__image" width="800" height="600">
                     </div>
                     <div class="lodging-item__name" data-speed="1.1">Cama litera</div>
                 </div>
@@ -510,8 +530,8 @@
                 <div class="lodging-item">
                     <div class="lodging-item__label" data-speed="0.9">Espacio para camas portátiles</div>
                     <div class="lodging-item__image-wrapper">
-                        <img src="assets/mapa-hotel.png" alt="Mapa de espacio para camas portátiles"
-                            class="lodging-item__image lodging-item__image--contain">
+                        <img loading="lazy" src="assets/mapa-hotel.png" alt="Mapa de espacio para camas portátiles"
+                            class="lodging-item__image lodging-item__image--contain" width="800" height="600">
                     </div>
                     <!-- Empty 3rd column -->
                     <div></div>
@@ -521,7 +541,8 @@
                 <div class="lodging-item">
                     <div class="lodging-item__label" data-speed="0.9">Espacio para carpas</div>
                     <div class="lodging-item__image-wrapper">
-                        <img src="assets/espacio_carpas.jpg" alt="Espacio para carpas" class="lodging-item__image">
+                        <img loading="lazy" src="assets/espacio_carpas.jpg" alt="Espacio para carpas"
+                            class="lodging-item__image" width="800" height="600">
                     </div>
                     <!-- Empty 3rd column -->
                     <div></div>
@@ -531,46 +552,113 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="footer">
+    <section class="section bg-brand-yellow" id="recomendaciones">
         <div class="container">
-            <div class="footer__grid">
-                <div class="footer__brand">
-                    <div class="footer__logo">
-                        <img src="logo-univ-alquimia.svg" alt="Universidad de la Alquimia" class="footer__logo-img">
-                    </div>
-                    <p class="footer__description">
-                        Universidad de la Alquimia. Un viaje hacia el interior, conectando con la sabiduría ancestral y
-                        la naturaleza en su estado más puro.
-                    </p>
+            <div class="grid grid-cols-[250px_minmax(0,1fr)] gap-10 items-start max-md:grid-cols-1">
+                <div>
+                    <span class="font-mono text-sm tracking-[0.1em] uppercase text-brand-text">RECOMENDACIONES</span>
                 </div>
 
-                <div class="footer__nav">
-                    <h4 class="footer__heading">Navegación</h4>
-                    <div class="footer__links">
-                        <a href="#inicio" class="footer__link">Inicio</a>
-                        <a href="#sobre-evento" class="footer__link">Sobre el Evento</a>
-                        <a href="#programa" class="footer__link">Programa</a>
-                        <a href="#paquetes" class="footer__link">Paquetes</a>
+                <div class="flex flex-col gap-10">
+                    <div class="font-mono text-sm uppercase tracking-[0.08em] text-brand-text leading-[1.7] space-y-3">
+                        <p>LLEVA CONTIGO TU DOCUMENTO DE IDENTIFICACIÓN O PASAPORTE VIGENTE.</p>
+                        <p>ASEGÚRATE DE TENER DINERO EFECTIVO PARA EL VIAJE, PREFERIBLEMENTE DÓLARES ESTADOUNIDENSES.</p>
+                        <p>EMPACA TODO LO NECESARIO PARA UNA ESTADÍA CÓMODA EN LA MONTAÑA, OPTIMIZANDO EL ESPACIO.</p>
+                        <p>LOS OBJETOS PERSONALES QUE LLEVES AL PARQUE DEBEN SER DISCRETOS Y POCO LLAMATIVOS.</p>
+                        <p>INCLUYE SILLA PLEGABLE PARA SENTARTE DURANTE LAS PRÁCTICAS DE ALQUIMIA EN EL CAMPAMENTO.</p>
+                        <p>NO OLVIDES UN TERMO PARA AGUA Y LLEVAR SNACKS.</p>
+                        <p>PARA EL CLIMA CÁLIDO Y LLUVIOSO, DEBES LLEVAR:</p>
                     </div>
-                </div>
 
-                <div class="footer__contact">
-                    <h4 class="footer__heading">Contacto</h4>
-                    <div class="footer__links">
-                        <a href="mailto:info@alquimia.edu" class="footer__link">info@alquimia.edu</a>
-                        <a href="tel:+582120000000" class="footer__link">+58 212 000 0000</a>
-                        <span class="footer__link">Yaracuy, Venezuela</span>
+                    <div class="font-mono text-sm uppercase tracking-[0.08em] text-brand-text leading-[1.7] space-y-3">
+                        <p class="font-bold">DÍAS ANTES Y DURANTE EL EVENTO:</p>
+                        <p>MANTÉN UNA DIETA BALANCEADA Y LIGERA, EVITANDO, EN LO POSIBLE, ALIMENTOS COMO CARNES ROJAS Y PRODUCTOS LÁCTEOS.</p>
+                        <p>ABSTENTE DE CONSUMIR ALCOHOL, DROGAS Y CUALQUIER SUSTANCIA TÓXICA.</p>
+                        <p>ASEGÚRATE DE MANTENERTE BIEN HIDRATADO DESDE, AL MENOS, UNA SEMANA ANTES DEL EVENTO.</p>
+                        <p>PUEDES HIDRATARTE CON: AGUA DE COCO, AGUA CON ELECTROLITOS, AGUA CON LIMÓN, ENTRE OTROS.</p>
+                    </div>
+
+                    <p class="font-mono text-sm uppercase tracking-[0.08em] text-brand-text leading-[1.7] font-bold">UNA VEZ FORMALICES TU INSCRIPCIÓN TE ENVIAREMOS UN DOCUMENTO MÁS DETALLADO CON RECOMENDACIONES.</p>
+
+                    <div class="grid grid-cols-4 gap-x-6 gap-y-10 mt-6 max-lg:grid-cols-2 max-md:grid-cols-1">
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">1</span>
+                            <p>ROPA FRESCA PARA EL DÍA Y ABRIGO PARA LA NOCHE.</p>
+                        </article>
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">2</span>
+                            <p>ROPA APTA PARA LLUVIA Y CLIMA SELVÁTICO, DE SECADO RÁPIDO.</p>
+                        </article>
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">3</span>
+                            <p>ZAPATOS DEPORTIVOS O BOTAS CERRADAS Y CÓMODAS, PREFERIBLEMENTE IMPERMEABLES.</p>
+                        </article>
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">4</span>
+                            <p>IMPERMEABLE.</p>
+                        </article>
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">5</span>
+                            <p>SHORTS Y CAMISETA O TOP PARA BAÑARTE EN EL RÍO.</p>
+                        </article>
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">6</span>
+                            <p>TRAJE DE BAÑO.</p>
+                        </article>
+                        <article class="flex flex-col gap-3 min-h-[120px]">
+                            <span class="font-sans text-[32px] font-semibold leading-none text-brand-text">7</span>
+                            <p>SHORTS O ROPA APTA PARA ENTRAR AL ATENOR EN LA UNIVERSIDAD.</p>
+                        </article>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="footer__bottom">
-                <p class="footer__copyright">© 2026 UNIVERSIDAD DE LA ALQUIMIA. TODOS LOS DERECHOS RESERVADOS.</p>
-                <div class="footer__socials">
-                    <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
-                    <a href="#" class="footer__social-link" aria-label="Facebook">FB</a>
-                    <a href="#" class="footer__social-link" aria-label="YouTube">YT</a>
+    <section class="section bg-brand-green" id="preguntas">
+        <div class="container">
+            <div class="min-h-[300px] flex items-center justify-center gap-[120px] max-md:min-h-[220px] max-md:flex-col max-md:gap-10">
+                <h2 class="font-serif text-[52px] font-normal leading-none text-brand-text max-md:text-[40px]">¿PREGUNTAS?</h2>
+                <a href="#contacto" class="inline-flex min-w-[210px] h-[52px] items-center justify-center border border-brand-gray font-mono text-sm uppercase tracking-[0.08em] text-brand-text no-underline transition hover:bg-brand-gray hover:text-white">CONTÁCTANOS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-brown text-brand-gold pt-24 pb-20 max-md:pt-[72px] max-md:pb-16" id="contacto">
+        <div class="container">
+            <div class="grid grid-cols-[minmax(0,1fr)_320px] grid-rows-[auto_1fr] gap-y-24 gap-x-12 max-md:grid-cols-1 max-md:grid-rows-[auto_auto_auto] max-md:gap-y-12">
+                <div>
+                    <img src="logo-univ-alquimia.svg" alt="Universidad de la Alquimia" class="w-[340px] max-w-full"
+                        style="filter: sepia(52%) saturate(440%) hue-rotate(352deg) brightness(95%);">
+                </div>
+
+                <div class="row-span-2 self-center justify-self-center max-md:row-auto">
+                    <img src="assets/174e3b42b6e852b56e5244f2aca1bb877cbabef0.svg"
+                        alt="Sello de la Universidad de la Alquimia" class="w-[190px] h-auto max-md:w-[150px]"
+                        style="filter: sepia(52%) saturate(440%) hue-rotate(352deg) brightness(95%);">
+                </div>
+
+                <div class="grid grid-cols-2 gap-y-9 gap-x-20 max-w-[760px] max-md:grid-cols-1 max-md:gap-7">
+                    <div class="flex flex-col gap-1.5">
+                        <h4 class="font-mono text-[30px] uppercase tracking-[0.06em] font-bold text-brand-gold max-md:text-[22px]">EMAIL:</h4>
+                        <a href="mailto:contacto@universidaddelaalqvimia.com"
+                            class="font-mono text-[30px] leading-[1.5] uppercase tracking-[0.03em] text-brand-gold no-underline hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-gold focus-visible:outline-offset-2 max-md:text-[22px]">CONTACTO@UNIVERSIDADDELAALQVIMIA.COM</a>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <h4 class="font-mono text-[30px] uppercase tracking-[0.06em] font-bold text-brand-gold max-md:text-[22px]">CONTACTO:</h4>
+                        <p class="font-mono text-[30px] leading-[1.5] uppercase tracking-[0.03em] text-brand-gold max-md:text-[22px]">FERNANDO DE LARA</p>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <h4 class="font-mono text-[30px] uppercase tracking-[0.06em] font-bold text-brand-gold max-md:text-[22px]">CONTACTO WS:</h4>
+                        <a href="tel:+13472854823"
+                            class="font-mono text-[30px] leading-[1.5] uppercase tracking-[0.03em] text-brand-gold no-underline hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-gold focus-visible:outline-offset-2 max-md:text-[22px]">+1 (347) 285-4823</a>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <h4 class="font-mono text-[30px] uppercase tracking-[0.06em] font-bold text-brand-gold max-md:text-[22px]">TELÉFONO:</h4>
+                        <a href="tel:+584247733480"
+                            class="font-mono text-[30px] leading-[1.5] uppercase tracking-[0.03em] text-brand-gold no-underline hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-gold focus-visible:outline-offset-2 max-md:text-[22px]">+58 424 773 3480</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,45 @@
  */
 
 // ============================================
+// Utility Functions
+// ============================================
+
+/**
+ * Debounce function to limit the rate at which a function can fire
+ * @param {Function} func - The function to debounce
+ * @param {number} wait - The number of milliseconds to delay
+ * @returns {Function} - The debounced function
+ */
+function debounce(func, wait = 100) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func.apply(this, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+/**
+ * Throttle function to ensure a function is called at most once in a specified time period
+ * @param {Function} func - The function to throttle
+ * @param {number} limit - The time limit in milliseconds
+ * @returns {Function} - The throttled function
+ */
+function throttle(func, limit = 100) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// ============================================
 // Force Scroll to Top on Reload
 // ============================================
 if (history.scrollRestoration) {
@@ -167,13 +206,29 @@ if (menuToggle && mainNav) {
 const scrollIndicator = document.querySelector('.scroll-indicator');
 
 if (scrollIndicator) {
-  scrollIndicator.addEventListener('click', () => {
+  // Make it keyboard accessible
+  scrollIndicator.setAttribute('tabindex', '0');
+  scrollIndicator.setAttribute('role', 'button');
+  scrollIndicator.setAttribute('aria-label', 'Desplazarse a la siguiente sección');
+
+  // Click handler
+  const scrollToNext = () => {
     const firstSection = document.querySelector('.section');
-    if (firstSection) {
+    if (firstSection && typeof lenis !== 'undefined') {
       lenis.scrollTo(firstSection, {
         offset: 0,
         duration: 1.5,
       });
+    }
+  };
+
+  scrollIndicator.addEventListener('click', scrollToNext);
+
+  // Keyboard support
+  scrollIndicator.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      scrollToNext();
     }
   });
 }
@@ -289,6 +344,8 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('active');
+      // Cleanup: Stop observing once revealed
+      revealObserver.unobserve(entry.target);
     }
   });
 }, revealObserverOptions);
@@ -297,30 +354,36 @@ const revealObserver = new IntersectionObserver((entries) => {
 function initReveals() {
   const elements = document.querySelectorAll('.reveal-up');
 
-  // Intersection Observer
+  // Intersection Observer with cleanup
   const observer = new IntersectionObserver((entries) => {
-    let delayAcc = 0;
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('active')) {
-        // Add stagger delay relative to the batch
-        entry.target.style.transitionDelay = `${0.2 + delayAcc}s`;
+        // Calculate stagger delay based on element index
+        const delay = Array.from(elements).indexOf(entry.target) * 0.15;
+        entry.target.style.transitionDelay = `${0.2 + delay}s`;
         entry.target.classList.add('active');
-        delayAcc += 0.15;
+
+        // Cleanup: Stop observing once revealed
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.05 });
 
   elements.forEach(el => observer.observe(el));
 
-  // Fallback: Check on scroll manually (for safe measure)
-  window.addEventListener('scroll', () => {
+  // Fallback: Check on scroll manually (debounced for performance)
+  const handleScrollReveal = debounce(() => {
     elements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.9) {
-        el.classList.add('active');
+      if (!el.classList.contains('active')) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('active');
+        }
       }
     });
-  });
+  }, 100);
+
+  window.addEventListener('scroll', handleScrollReveal);
 }
 
 // Kick off
@@ -353,7 +416,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const header = document.querySelector('.header');
 let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
+const handleHeaderScroll = throttle(() => {
   const currentScroll = window.pageYOffset;
 
   if (currentScroll > 100) {
@@ -363,14 +426,16 @@ window.addEventListener('scroll', () => {
   }
 
   lastScroll = currentScroll;
-});
+}, 100);
+
+window.addEventListener('scroll', handleHeaderScroll);
 
 // ============================================
 // Program Accordion
 // ============================================
-function toggleAccordion(element) {
-  const day = element.parentElement;
+function toggleAccordion(day) {
   const isActive = day.classList.contains('is-active');
+  const header = day.querySelector('.program-day__header');
 
   // Close other accordion items
   const allDays = document.querySelectorAll('.program-day');
@@ -378,7 +443,9 @@ function toggleAccordion(element) {
     if (item !== day) {
       item.classList.remove('is-active');
       const toggle = item.querySelector('.program-day__toggle');
+      const itemHeader = item.querySelector('.program-day__header');
       if (toggle) toggle.textContent = 'Ver itinerario';
+      if (itemHeader) itemHeader.setAttribute('aria-expanded', 'false');
     }
   });
 
@@ -387,10 +454,12 @@ function toggleAccordion(element) {
     day.classList.remove('is-active');
     const toggleBtn = day.querySelector('.program-day__toggle');
     if (toggleBtn) toggleBtn.textContent = 'Ver itinerario';
+    if (header) header.setAttribute('aria-expanded', 'false');
   } else {
     day.classList.add('is-active');
     const toggleBtn = day.querySelector('.program-day__toggle');
     if (toggleBtn) toggleBtn.textContent = 'Ocultar itinerario';
+    if (header) header.setAttribute('aria-expanded', 'true');
   }
 
   // Update Lenis/Scroll after transition
@@ -403,6 +472,32 @@ function toggleAccordion(element) {
     window.dispatchEvent(new Event('resize'));
   }, 600);
 }
+
+// Initialize accordion event listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const accordionHeaders = document.querySelectorAll('.program-day__header');
+
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', function () {
+      const day = this.parentElement;
+      toggleAccordion(day);
+    });
+
+    // Add keyboard support
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const day = this.parentElement;
+        toggleAccordion(day);
+      }
+    });
+
+    // Make it keyboard accessible
+    header.setAttribute('tabindex', '0');
+    header.setAttribute('role', 'button');
+    header.setAttribute('aria-expanded', header.parentElement.classList.contains('is-active') ? 'true' : 'false');
+  });
+});
 
 // ============================================
 // Journey Logo Drawing Animation

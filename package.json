@@ -1,0 +1,25 @@
+{
+  "name": "alquimia-univ",
+  "version": "1.0.0",
+  "description": "Landing page profesional para el evento Qvilibrio 2026 de Universidad Alquimia, desarrollado con HTML5, CSS3 y JavaScript vanilla, optimizado para WordPress.",
+  "main": "index.js",
+  "scripts": {
+    "build:tailwind": "tailwind -c tailwind.config.js -i ./css/tailwind-input.css -o ./css/tailwind.css --minify",
+    "watch:tailwind": "tailwind -c tailwind.config.js -i ./css/tailwind-input.css -o ./css/tailwind.css --watch",
+    "dev": "npm run build:tailwind && python3 -m http.server 4321"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusrca/alquimia-univ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesusrca/alquimia-univ/issues"
+  },
+  "homepage": "https://github.com/jesusrca/alquimia-univ#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
